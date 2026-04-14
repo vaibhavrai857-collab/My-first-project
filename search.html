@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search Donor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="search">
+
+<div class="navbar">
+<h2>🩸 Blood Bank</h2>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="register.html">Register Donor</a>
+<a href="request.html">Request Blood</a>
+<a href="search.html">Search Donor</a>
+</div>
+</div>
+
+<div class="form-container">
+
+<h2>Search Donors</h2>
+
+<select id="blood_group">
+<option value="">Select Blood</option>
+<option>A+</option><option>B+</option>
+<option>O+</option><option>AB+</option>
+</select>
+
+<input id="city" placeholder="City">
+
+<button onclick="searchDonors()">Search</button>
+
+</div>
+
+<table id="results">
+<tr>
+<th>Name</th><th>Blood</th><th>Phone</th><th>City</th>
+</tr>
+</table>
+
+<script src="script.js"></script>
+</body>
+</html>

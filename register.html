@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Register Donor</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="register">
+
+<div class="navbar">
+<h2>🩸 Blood Bank</h2>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="register.html">Register Donor</a>
+<a href="request.html">Request Blood</a>
+<a href="search.html">Search Donor</a>
+</div>
+</div>
+
+<div class="form-container">
+
+<h2>Donor Registration</h2>
+
+<form id="donorForm">
+
+<input id="name" placeholder="Full Name" required>
+<input id="age" type="number" placeholder="Age" required>
+
+<select id="blood" required>
+<option value="">Select Blood Group</option>
+<option>A+</option><option>A-</option>
+<option>B+</option><option>B-</option>
+<option>O+</option><option>O-</option>
+<option>AB+</option><option>AB-</option>
+</select>
+
+<input id="phone" placeholder="Phone">
+<input id="city" placeholder="City">
+<input id="aadhaar" placeholder="Aadhaar">
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
