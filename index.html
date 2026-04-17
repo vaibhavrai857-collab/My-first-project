@@ -2,7 +2,6 @@
 <html>
 <head>
 <title>Blood Bank</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,12 +9,12 @@
 
 <div class="navbar">
 <h2>🩸 Blood Bank</h2>
-
 <div class="menu">
 <a href="index.html">Home</a>
 <a href="register.html">Register Donor</a>
 <a href="request.html">Request Blood</a>
 <a href="search.html">Search Donor</a>
+<a href="login.html">Admin</a>
 </div>
 </div>
 
@@ -24,5 +23,28 @@
 <p>Donate Blood, Save Lives ❤️</p>
 </div>
 
+<!-- DASHBOARD -->
+<div class="dashboard">
+<div class="box">
+<h3 id="donorCount">0</h3>
+<p>Registered Donors</p>
+</div>
+
+<div class="box">
+<h3 id="requestCount">0</h3>
+<p>Blood Requests</p>
+</div>
+</div>
+
+<!-- ABOUT BOX -->
+<div class="simple-box">
+<h2>About Us</h2>
+<p>
+We connect donors and patients efficiently to save lives.
+Our system helps hospitals quickly find blood donors in emergencies.
+</p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

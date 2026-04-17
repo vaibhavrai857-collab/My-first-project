@@ -1,45 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Search Donor</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+  <title>Search Donor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="search">
 
+<!-- NAVBAR -->
 <div class="navbar">
-<h2>🩸 Blood Bank</h2>
-<div class="menu">
-<a href="index.html">Home</a>
-<a href="register.html">Register Donor</a>
-<a href="request.html">Request Blood</a>
-<a href="search.html">Search Donor</a>
-</div>
-</div>
+  <h2>🩸 Blood Bank</h2>
 
-<div class="form-container">
-
-<h2>Search Donors</h2>
-
-<select id="blood_group">
-<option value="">Select Blood</option>
-<option>A+</option><option>B+</option>
-<option>O+</option><option>AB+</option>
-</select>
-
-<input id="city" placeholder="City">
-
-<button onclick="searchDonors()">Search</button>
-
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="register.html">Register Donor</a>
+    <a href="request.html">Request Blood</a>
+    <a href="search.html">Search Donor</a>
+    <a href="login.html">Admin</a>
+  </div>
 </div>
 
-<table id="results">
-<tr>
-<th>Name</th><th>Blood</th><th>Phone</th><th>City</th>
-</tr>
-</table>
+<!-- SEARCH BOX -->
+<div class="simple-box">
+
+  <h2>Search Blood Donors</h2>
+
+  <!-- BLOOD GROUP -->
+  <select id="blood_group" required>
+    <option value="">Select Blood Group</option>
+    <option>A+</option>
+    <option>A-</option>
+    <option>B+</option>
+    <option>B-</option>
+    <option>O+</option>
+    <option>O-</option>
+    <option>AB+</option>
+    <option>AB-</option>
+  </select>
+
+  <!-- CITY INPUT -->
+  <input type="text" id="city" placeholder="Enter City" required>
+
+  <!-- SEARCH BUTTON -->
+  <button onclick="searchDonors()">Search</button>
+
+</div>
+
+<!-- RESULTS TABLE -->
+<div class="simple-box">
+
+  <h2>Search Results</h2>
+
+  <table id="results">
+    <tr>
+      <th>Name</th>
+      <th>Blood Group</th>
+      <th>Phone</th>
+      <th>City</th>
+    </tr>
+  </table>
+
+</div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

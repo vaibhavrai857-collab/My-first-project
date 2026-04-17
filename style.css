@@ -141,3 +141,30 @@ button{
 width:100%;
 }
 }
+/* SIMPLE BOX FOR ABOUT, REGISTER, REQUEST */
+.simple-box{
+  background: burlywood;
+  width: min(500px, 90%);
+  margin: 30px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* DASHBOARD BOXES */
+.dashboard{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+
+.box{
+  background:burlywood;
+  padding:20px;
+  border-radius:10px;
+  width:150px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}

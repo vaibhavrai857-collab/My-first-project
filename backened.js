@@ -3,67 +3,105 @@ const mysql = require("mysql2");
 const cors = require("cors");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// ✅ MySQL Connection (MATCHING YOUR DB)
+// DB CONNECTION
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "1234", // your password
-  database: "bloodbank" // ✅ matches your DB
+  password: "1234",
+  database: "bloodbank"
 });
 
-// ✅ Connect to DB
-db.connect((err) => {
-  if (err) {
-    console.error("❌ Database connection failed:", err.message);
-  } else {
-    console.log("✅ Connected to MySQL (bloodbank)");
-  }
+db.connect(err => {
+  if (err) console.log(err);
+  else console.log("MySQL Connected ✅");
 });
 
-// ✅ Test Route
-app.get("/", (req, res) => {
-  res.send("🚀 Server is running successfully");
-});
-
-// ✅ Add Donor API
+// =====================
+// ADD DONOR
+// =====================
 app.post("/add-donor", (req, res) => {
   const { name, age, blood, phone, city, aadhaar } = req.body;
 
+  if (!name || !age || !blood || !phone || !city || !aadhaar) {
+    return res.json({ message: "All fields required ❌" });
+  }
+
+  db.query("SELECT donation_date FROM donors WHERE aadhaar=?", [aadhaar], (err, result) => {
+    if (err) return res.status(500).json({ message: "DB Error" });
+
+    if (result.length > 0) {
+      let lastDate = result[0].donation_date;
+
+      if (lastDate) {
+        let diff = Math.floor((new Date() - new Date(lastDate)) / (1000 * 60 * 60 * 24));
+
+        if (diff < 90) {
+          return res.json({ message: `Donate again after ${90 - diff} days ❌` });
+        }
+      }
+
+      return res.json({ message: "Aadhaar already registered ❌" });
+    }
+
+    const sql = `
+      INSERT INTO donors (name, age, blood, phone, city, aadhaar, donation_date)
+      VALUES (?, ?, ?, ?, ?, ?, CURDATE())
+    `;
+
+    db.query(sql, [name, age, blood, phone, city, aadhaar], (err) => {
+      if (err) return res.status(500).json({ message: "Insert Error" });
+
+      res.json({ message: "Registered Successfully ✅" });
+    });
+  });
+});
+
+// =====================
+// GET DONORS
+// =====================
+app.get("/donors", (req, res) => {
+  db.query("SELECT * FROM donors", (err, result) => {
+    if (err) return res.status(500).send("Error");
+    res.json(result);
+  });
+});
+
+// =====================
+// DELETE DONOR
+// =====================
+app.delete("/delete-donor/:id", (req, res) => {
+  db.query("DELETE FROM donors WHERE id=?", [req.params.id], (err) => {
+    if (err) return res.status(500).send("Error");
+    res.send("Deleted");
+  });
+});
+
+// =====================
+// SEARCH DONORS
+// =====================
+app.get("/search", (req, res) => {
+  let city = (req.query.city || "").trim();
+  let blood = (req.query.blood || "").trim();
+
   const sql = `
-    INSERT INTO donors (name, age, blood, phone, city, aadhaar)
-    VALUES (?, ?, ?, ?, ?, ?)
+    SELECT * FROM donors
+    WHERE LOWER(city) LIKE LOWER(?)
+    AND LOWER(blood) = LOWER(?)
   `;
 
-  db.query(sql, [name, age, blood, phone, city, aadhaar], (err, result) => {
-    if (err) {
-      console.error("❌ Insert Error:", err);
-      res.status(500).send("❌ Error inserting data");
-    } else {
-      res.send("✅ Donor added successfully");
-    }
+  db.query(sql, [`%${city}%`, blood], (err, result) => {
+    if (err) return res.status(500).json([]);
+    res.json(result);
   });
 });
 
-// ✅ Search Donor API
-app.get("/search", (req, res) => {
-  const { city, blood } = req.query;
-
-  const sql = "SELECT * FROM donors WHERE city=? AND blood=?";
-
-  db.query(sql, [city, blood], (err, result) => {
-    if (err) {
-      console.error("❌ Fetch Error:", err);
-      res.status(500).send("❌ Error fetching data");
-    } else {
-      res.json(result);
-    }
-  });
-});
-
-// ✅ Request Blood API
+// =====================
+// REQUEST BLOOD
+// =====================
 app.post("/request-blood", (req, res) => {
   const { name, blood, phone, city } = req.body;
 
@@ -72,18 +110,28 @@ app.post("/request-blood", (req, res) => {
     VALUES (?, ?, ?, ?)
   `;
 
-  db.query(sql, [name, blood, phone, city], (err, result) => {
-    if (err) {
-      console.error("❌ Request Error:", err);
-      res.status(500).send("❌ Error submitting request");
-    } else {
-      res.send("✅ Blood request submitted");
-    }
+  db.query(sql, [name, blood, phone, city], (err) => {
+    if (err) return res.status(500).send("Error");
+    res.json({ message: "Request Submitted ✅" });
   });
 });
 
-// ✅ Start Server
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+// =====================
+// COUNTS
+// =====================
+app.get("/count-donors", (req, res) => {
+  db.query("SELECT COUNT(*) AS total FROM donors", (err, r) => {
+    res.json(r[0]);
+  });
+});
+
+app.get("/count-requests", (req, res) => {
+  db.query("SELECT COUNT(*) AS total FROM requests", (err, r) => {
+    res.json(r[0]);
+  });
+});
+
+// START SERVER
+app.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
 });
