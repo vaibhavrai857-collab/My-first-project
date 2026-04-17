@@ -1,24 +1,29 @@
 
 /* ===============================
-   INITIALIZATION (SAFE START)
+   SAFE INITIALIZATION
 ================================*/
 document.addEventListener("DOMContentLoaded", function () {
-
-    loadCounts();          // dashboard numbers
-    setupNavigation();     // button navigation
+    initApp();
 });
 
 
+function initApp() {
+    try {
+        loadCounts();
+        setupNavigation();
+    } catch (error) {
+        console.log("App initialized safely without backend:", error);
+    }
+}
+
 
 /* ===============================
-   DASHBOARD COUNTS (NO BACKEND)
+   SAFE DASHBOARD COUNTS
+   (NO BACKEND - NO ERRORS)
 ================================*/
 function loadCounts() {
 
-    // ❌ Removed backend API calls completely
-    // (prevents localhost / fetch errors)
-
-    // ✅ Static values (you can change anytime)
+    // Static values (safe for GitHub Pages)
     const donorCount = 120;
     const requestCount = 45;
 
@@ -30,37 +35,33 @@ function loadCounts() {
 }
 
 
-
 /* ===============================
-   NAVIGATION BUTTONS
+   BUTTON NAVIGATION SYSTEM
 ================================*/
 function setupNavigation() {
 
     const buttons = [
-        { id: "registerBtn", page: "register.html", msg: "Opening Register Page..." },
-        { id: "loginBtn", page: "login.html", msg: "Opening Login Page..." },
-        { id: "searchBtn", page: "search.html", msg: "Opening Search Page..." },
-        { id: "requestBtn", page: "request.html", msg: "Opening Request Page..." },
-        { id: "adminBtn", page: "admin.html", msg: "Opening Admin Panel..." }
+        { id: "registerBtn", page: "register.html" },
+        { id: "loginBtn", page: "login.html" },
+        { id: "searchBtn", page: "search.html" },
+        { id: "requestBtn", page: "request.html" },
+        { id: "adminBtn", page: "admin.html" }
     ];
 
     buttons.forEach(item => {
 
-        const btn = document.getElementById(item.id);
+        const el = document.getElementById(item.id);
 
-        if (btn) {
-            btn.addEventListener("click", function () {
-
-                showNotification(item.msg);
-
+        if (el) {
+            el.addEventListener("click", function () {
+                showNotification("Opening page...");
                 setTimeout(() => {
                     window.location.href = item.page;
-                }, 400);
+                }, 300);
             });
         }
     });
 }
-
 
 
 /* ===============================
@@ -76,7 +77,7 @@ function showNotification(message) {
     toast.style.bottom = "20px";
     toast.style.right = "20px";
     toast.style.background = "#28a745";
-    toast.style.color = "white";
+    toast.style.color = "#fff";
     toast.style.padding = "12px 18px";
     toast.style.borderRadius = "8px";
     toast.style.fontSize = "14px";
