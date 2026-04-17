@@ -1,21 +1,24 @@
+
+/* ===============================
+   INITIALIZATION (SAFE START)
+================================*/
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Safe startup (prevents crash)
-    loadCounts();
-
-    setupNavigation();
+    loadCounts();          // dashboard numbers
+    setupNavigation();     // button navigation
 });
 
 
-// ===============================
-// SAFE COUNTS (NO BACKEND)
-// ===============================
+
+/* ===============================
+   DASHBOARD COUNTS (NO BACKEND)
+================================*/
 function loadCounts() {
 
-    // ❌ Removed backend API:
-    // http://localhost:3000/count-donors
+    // ❌ Removed backend API calls completely
+    // (prevents localhost / fetch errors)
 
-    // ✅ Static values for GitHub Pages
+    // ✅ Static values (you can change anytime)
     const donorCount = 120;
     const requestCount = 45;
 
@@ -27,36 +30,42 @@ function loadCounts() {
 }
 
 
-// ===============================
-// BUTTON NAVIGATION FIX
-// ===============================
+
+/* ===============================
+   NAVIGATION BUTTONS
+================================*/
 function setupNavigation() {
 
-    const links = [
+    const buttons = [
         { id: "registerBtn", page: "register.html", msg: "Opening Register Page..." },
         { id: "loginBtn", page: "login.html", msg: "Opening Login Page..." },
         { id: "searchBtn", page: "search.html", msg: "Opening Search Page..." },
-        { id: "requestBtn", page: "request.html", msg: "Opening Request Page..." }
+        { id: "requestBtn", page: "request.html", msg: "Opening Request Page..." },
+        { id: "adminBtn", page: "admin.html", msg: "Opening Admin Panel..." }
     ];
 
-    links.forEach(item => {
+    buttons.forEach(item => {
+
         const btn = document.getElementById(item.id);
 
         if (btn) {
             btn.addEventListener("click", function () {
+
                 showNotification(item.msg);
+
                 setTimeout(() => {
                     window.location.href = item.page;
-                }, 500);
+                }, 400);
             });
         }
     });
 }
 
 
-// ===============================
-// NOTIFICATION SYSTEM
-// ===============================
+
+/* ===============================
+   NOTIFICATION SYSTEM (TOAST)
+================================*/
 function showNotification(message) {
 
     const toast = document.createElement("div");
@@ -70,13 +79,14 @@ function showNotification(message) {
     toast.style.color = "white";
     toast.style.padding = "12px 18px";
     toast.style.borderRadius = "8px";
+    toast.style.fontSize = "14px";
     toast.style.zIndex = "9999";
     toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-    toast.style.fontSize = "14px";
+    toast.style.fontFamily = "Arial";
 
     document.body.appendChild(toast);
 
     setTimeout(() => {
         toast.remove();
-    }, 3000);
+    }, 2500);
 }
