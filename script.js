@@ -1,25 +1,21 @@
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Safe initialization (prevents site crash)
-    try {
-        loadCounts();
-    } catch (error) {
-        console.log("Backend not available, using fallback data.");
-    }
+    // Safe startup (prevents crash)
+    loadCounts();
 
-    // Attach button events safely
-    setupButtons();
+    setupNavigation();
 });
 
 
 // ===============================
-// SAFE DASHBOARD COUNTS
+// SAFE COUNTS (NO BACKEND)
 // ===============================
 function loadCounts() {
-    // ❌ Backend removed (prevents fetch crash)
 
-    // ✅ Static fallback values
+    // ❌ Removed backend API:
+    // http://localhost:3000/count-donors
+
+    // ✅ Static values for GitHub Pages
     const donorCount = 120;
     const requestCount = 45;
 
@@ -32,45 +28,29 @@ function loadCounts() {
 
 
 // ===============================
-// BUTTON HANDLERS
+// BUTTON NAVIGATION FIX
 // ===============================
-function setupButtons() {
+function setupNavigation() {
 
-    // Register button
-    const registerBtn = document.getElementById("registerBtn");
-    if (registerBtn) {
-        registerBtn.addEventListener("click", function () {
-            showNotification("Redirecting to Register Page...");
-            window.location.href = "register.html";
-        });
-    }
+    const links = [
+        { id: "registerBtn", page: "register.html", msg: "Opening Register Page..." },
+        { id: "loginBtn", page: "login.html", msg: "Opening Login Page..." },
+        { id: "searchBtn", page: "search.html", msg: "Opening Search Page..." },
+        { id: "requestBtn", page: "request.html", msg: "Opening Request Page..." }
+    ];
 
-    // Login button
-    const loginBtn = document.getElementById("loginBtn");
-    if (loginBtn) {
-        loginBtn.addEventListener("click", function () {
-            showNotification("Opening Login Page...");
-            window.location.href = "login.html";
-        });
-    }
+    links.forEach(item => {
+        const btn = document.getElementById(item.id);
 
-    // Search button
-    const searchBtn = document.getElementById("searchBtn");
-    if (searchBtn) {
-        searchBtn.addEventListener("click", function () {
-            showNotification("Searching donors...");
-            window.location.href = "search.html";
-        });
-    }
-
-    // Request button
-    const requestBtn = document.getElementById("requestBtn");
-    if (requestBtn) {
-        requestBtn.addEventListener("click", function () {
-            showNotification("Opening Request Page...");
-            window.location.href = "request.html";
-        });
-    }
+        if (btn) {
+            btn.addEventListener("click", function () {
+                showNotification(item.msg);
+                setTimeout(() => {
+                    window.location.href = item.page;
+                }, 500);
+            });
+        }
+    });
 }
 
 
