@@ -189,3 +189,109 @@ async function deleteDonor(id) {
 
     loadDonors();
 }
+
+/* =========================
+   LOAD DONORS
+========================= */
+async function loadDonors() {
+
+    const res = await fetch(`${BASE_URL}/donors`);
+    const data = await res.json();
+
+    const table = document.getElementById("adminTable");
+
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    `;
+
+    data.forEach(d => {
+        table.innerHTML += `
+            <tr>
+                <td>${d.name}</td>
+                <td>${d.blood}</td>
+                <td>${d.phone}</td>
+                <td>${d.city}</td>
+                <td>
+                    <button onclick="deleteDonor(${d.id})">Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+
+/* =========================
+   LOAD REQUESTS
+========================= */
+async function loadRequests() {
+
+    const res = await fetch(`${BASE_URL}/requests`);
+    const data = await res.json();
+
+    const table = document.getElementById("requestTable");
+
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    `;
+
+    data.forEach(r => {
+        table.innerHTML += `
+            <tr>
+                <td>${r.name}</td>
+                <td>${r.blood}</td>
+                <td>${r.phone}</td>
+                <td>${r.city}</td>
+                <td>
+                    <button onclick="deleteRequest(${r.id})">Delete</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+
+/* =========================
+   DELETE DONOR
+========================= */
+async function deleteDonor(id) {
+
+    await fetch(`${BASE_URL}/delete-donor/${id}`, {
+        method: "DELETE"
+    });
+
+    loadDonors();
+}
+
+
+/* =========================
+   DELETE REQUEST
+========================= */
+async function deleteRequest(id) {
+
+    await fetch(`${BASE_URL}/delete-request/${id}`, {
+        method: "DELETE"
+    });
+
+    loadRequests();
+}
+
+
+/* =========================
+   ADMIN INIT
+========================= */
+window.onload = function () {
+    loadDonors();
+    loadRequests();
+};
