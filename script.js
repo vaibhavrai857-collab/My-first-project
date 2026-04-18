@@ -105,61 +105,57 @@ document.getElementById("requestForm")?.addEventListener("submit", async (e) => 
 ================================*/
 async function searchDonors() {
 
-    const blood = document.getElementById("blood_group")?.value;
-    const city = document.getElementById("city")?.value;
+    let blood = document.getElementById("blood_group")?.value;
+    let city = document.getElementById("city")?.value;
+
+    console.log("Raw input:", blood, city);
 
     if (!blood || !city) {
         alert("Select Blood Group & City");
         return;
     }
 
-    try {
-        const res = await fetch(`${BASE_URL}/search?blood=${blood}&city=${city}`);
+    // CLEAN INPUT (MOST IMPORTANT FIX)
+    blood = blood.trim().toUpperCase().replace(/\s+/g, "");
+    city = city.trim().toLowerCase().replace(/\s+/g, "");
 
-        if (!res.ok) {
-            alert("Server Error ❌");
-            return;
-        }
+    console.log("Cleaned input:", blood, city);
 
-        const data = await res.json();
+    const res = await fetch(`${BASE_URL}/search?blood=${blood}&city=${city}`);
+    const data = await res.json();
 
-        const table = document.getElementById("results");
+    const table = document.getElementById("results");
 
-        table.innerHTML = `
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>Phone</th>
+            <th>City</th>
+        </tr>
+    `;
+
+    if (!data || data.length === 0) {
+        table.innerHTML += `
             <tr>
-                <th>Name</th>
-                <th>Blood</th>
-                <th>Phone</th>
-                <th>City</th>
+                <td colspan="4" style="text-align:center;color:red;">
+                    No donors found ❌
+                </td>
             </tr>
         `;
-
-        if (!Array.isArray(data) || data.length === 0) {
-            table.innerHTML += `
-                <tr>
-                    <td colspan="4" style="text-align:center;color:red;">
-                        No donors found ❌
-                    </td>
-                </tr>
-            `;
-            return;
-        }
-
-        data.forEach(d => {
-            table.innerHTML += `
-                <tr>
-                    <td>${d.name}</td>
-                    <td>${d.blood}</td>
-                    <td>${d.phone}</td>
-                    <td>${d.city}</td>
-                </tr>
-            `;
-        });
-
-    } catch (err) {
-        console.log("Search error:", err);
-        alert("Search failed ❌");
+        return;
     }
+
+    data.forEach(d => {
+        table.innerHTML += `
+            <tr>
+                <td>${d.name}</td>
+                <td>${d.blood}</td>
+                <td>${d.phone}</td>
+                <td>${d.city}</td>
+            </tr>
+        `;
+    });
 }
 function login() {
 
