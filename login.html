@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Admin Login</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
+  <title>Admin Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="register">
 
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>🩸 Blood Bank</h2>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="register.html">Register Donor</a>
+    <a href="request.html">Request Blood</a>
+    <a href="search.html">Search Donor</a>
+    <a href="login.html">Admin</a>
+  </div>
+</div>
+
+<!-- LOGIN FORM -->
 <div class="form-container">
 
-<h2>Hospital Admin Login</h2>
+  <h2>Hospital Admin Login</h2>
 
-<!-- OPTIONAL MESSAGE -->
-<p id="msg" style="text-align:center; color:red;"></p>
+  <p
+    id="msg"
+    style="text-align:center; color:red;"
+  ></p>
 
-<input id="hospitalId" placeholder="Hospital ID">
-<input id="password" type="password" placeholder="Password">
+  <input
+    id="hospitalId"
+    placeholder="Hospital ID"
+  >
 
-<button onclick="login()">Login</button>
+  <input
+    id="password"
+    type="password"
+    placeholder="Password"
+  >
+
+  <button onclick="login()">
+    Login
+  </button>
 
 </div>
 
 <script src="script.js"></script>
 
 <script>
-// ✅ ONLY redirect if user just logged out
-if(localStorage.getItem("justLoggedOut") === "true"){
+if (localStorage.getItem("justLoggedOut") === "true") {
 
-  // show message
-  document.getElementById("msg").innerText = "Logged out successfully...";
+  document.getElementById("msg").innerText =
+    "Logged out successfully...";
 
-  // remove flag so it doesn't trigger again
   localStorage.removeItem("justLoggedOut");
 
-  // redirect after 1.5 seconds
   setTimeout(() => {
     window.location = "index.html";
   }, 1500);
