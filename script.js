@@ -1,3 +1,8 @@
+/* ===============================
+   BACKEND URL (CHANGE AFTER RENDER DEPLOY)
+================================*/
+const BASE_URL = "https://your-render-app.onrender.com";
+
 
 /* ===============================
    SAFE INITIALIZATION
@@ -6,37 +11,26 @@ document.addEventListener("DOMContentLoaded", function () {
     initApp();
 });
 
-
 function initApp() {
-    try {
-        loadCounts();
-        setupNavigation();
-    } catch (error) {
-        console.log("App initialized safely without backend:", error);
-    }
+    loadCounts();
+    setupNavigation();
 }
 
 
 /* ===============================
-   SAFE DASHBOARD COUNTS
-   (NO BACKEND - NO ERRORS)
+   DASHBOARD COUNTS (SAFE FALLBACK)
 ================================*/
 function loadCounts() {
-
-    // Static values (safe for GitHub Pages)
-    const donorCount = 120;
-    const requestCount = 45;
-
     const donorEl = document.getElementById("donorCount");
     const requestEl = document.getElementById("requestCount");
 
-    if (donorEl) donorEl.innerText = donorCount;
-    if (requestEl) requestEl.innerText = requestCount;
+    if (donorEl) donorEl.innerText = 120;
+    if (requestEl) requestEl.innerText = 45;
 }
 
 
 /* ===============================
-   BUTTON NAVIGATION SYSTEM
+   NAVIGATION SYSTEM
 ================================*/
 function setupNavigation() {
 
@@ -49,11 +43,10 @@ function setupNavigation() {
     ];
 
     buttons.forEach(item => {
-
         const el = document.getElementById(item.id);
 
         if (el) {
-            el.addEventListener("click", function () {
+            el.addEventListener("click", () => {
                 showNotification("Opening page...");
                 setTimeout(() => {
                     window.location.href = item.page;
@@ -61,6 +54,150 @@ function setupNavigation() {
             });
         }
     });
+}
+
+
+/* ===============================
+   REGISTER DONOR (API)
+================================*/
+document.getElementById("donorForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const donor = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        blood: document.getElementById("blood").value,
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value,
+        aadhaar: document.getElementById("aadhaar").value
+    };
+
+    const res = await fetch(`${BASE_URL}/add-donor`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(donor)
+    });
+
+    const data = await res.json();
+    showNotification(data.message);
+    e.target.reset();
+});
+
+
+/* ===============================
+   REQUEST BLOOD (API)
+================================*/
+document.getElementById("requestForm")?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const req = {
+        name: document.getElementById("patientName").value,
+        blood: document.getElementById("bloodGroup").value,
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value
+    };
+
+    await fetch(`${BASE_URL}/request-blood`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req)
+    });
+
+    showNotification("Request Submitted Successfully");
+    e.target.reset();
+});
+
+
+/* ===============================
+   SEARCH DONOR (API)
+================================*/
+async function searchDonors() {
+
+    const blood = document.getElementById("blood_group").value;
+    const city = document.getElementById("city").value;
+
+    const res = await fetch(`${BASE_URL}/search?city=${city}&blood=${blood}`);
+    const data = await res.json();
+
+    const table = document.getElementById("results");
+
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>Phone</th>
+            <th>City</th>
+        </tr>
+    `;
+
+    if (!data.length) {
+        table.innerHTML += `
+            <tr>
+                <td colspan="4" style="text-align:center;color:red;">
+                    No donors found ❌
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    data.forEach(d => {
+        table.innerHTML += `
+            <tr>
+                <td>${d.name}</td>
+                <td>${d.blood}</td>
+                <td>${d.phone}</td>
+                <td>${d.city}</td>
+            </tr>
+        `;
+    });
+}
+
+
+/* ===============================
+   ADMIN - LOAD DONORS
+================================*/
+async function loadDonors() {
+
+    const res = await fetch(`${BASE_URL}/donors`);
+    const data = await res.json();
+
+    const table = document.getElementById("adminTable");
+
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Blood</th>
+            <th>Phone</th>
+            <th>City</th>
+            <th>Action</th>
+        </tr>
+    `;
+
+    data.forEach(d => {
+        table.innerHTML += `
+            <tr>
+                <td>${d.name}</td>
+                <td>${d.blood}</td>
+                <td>${d.phone}</td>
+                <td>${d.city}</td>
+                <td><button onclick="deleteDonor(${d.id})">Delete</button></td>
+            </tr>
+        `;
+    });
+}
+
+
+/* ===============================
+   DELETE DONOR
+================================*/
+async function deleteDonor(id) {
+
+    await fetch(`${BASE_URL}/delete-donor/${id}`, {
+        method: "DELETE"
+    });
+
+    loadDonors();
 }
 
 
@@ -83,7 +220,6 @@ function showNotification(message) {
     toast.style.fontSize = "14px";
     toast.style.zIndex = "9999";
     toast.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
-    toast.style.fontFamily = "Arial";
 
     document.body.appendChild(toast);
 
