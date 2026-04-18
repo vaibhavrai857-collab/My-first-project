@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Request Blood</title>
-<link rel="stylesheet" href="style.css">
+  <title>Request Blood</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="request">
 
+<!-- NAVBAR -->
+<div class="navbar">
+  <h2>🩸 Blood Bank</h2>
+
+  <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="register.html">Register Donor</a>
+    <a href="request.html">Request Blood</a>
+    <a href="search.html">Search Donor</a>
+    <a href="login.html">Admin</a>
+  </div>
+</div>
+
+<!-- REQUEST FORM -->
 <div class="simple-box">
 
-<h2>Blood Request</h2>
+  <h2>Blood Request Form</h2>
 
-<form id="requestForm">
+  <form id="requestForm">
 
-<input id="patientName" placeholder="Patient Name" required>
+    <input
+      id="patientName"
+      placeholder="Patient Name"
+      required
+    >
 
-<select id="bloodGroup">
-<option value="">Select Blood Group</option>
-<option>A+</option><option>B+</option>
-<option>O+</option><option>AB+</option>
-</select>
+    <select id="bloodGroup" required>
+      <option value="">Select Blood Group</option>
+      <option>A+</option>
+      <option>A-</option>
+      <option>B+</option>
+      <option>B-</option>
+      <option>O+</option>
+      <option>O-</option>
+      <option>AB+</option>
+      <option>AB-</option>
+    </select>
 
-<input id="phone" placeholder="Phone" required>
-<input id="city" placeholder="City" required>
+    <input
+      id="phone"
+      placeholder="Phone Number"
+      required
+    >
 
-<button type="submit">Submit</button>
+    <input
+      id="city"
+      placeholder="City"
+      required
+    >
 
-</form>
+    <button type="submit">
+      Submit Request
+    </button>
+
+  </form>
 
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
