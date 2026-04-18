@@ -115,10 +115,15 @@ async function searchDonors() {
 
     try {
         const res = await fetch(`${BASE_URL}/search?blood=${blood}&city=${city}`);
+
+        if (!res.ok) {
+            alert("Server Error ❌");
+            return;
+        }
+
         const data = await res.json();
 
         const table = document.getElementById("results");
-        if (!table) return;
 
         table.innerHTML = `
             <tr>
@@ -129,10 +134,12 @@ async function searchDonors() {
             </tr>
         `;
 
-        if (!Array.isArray(data) || data.length === 0) {
+        if (!data || data.length === 0) {
             table.innerHTML += `
                 <tr>
-                    <td colspan="4">No donors found ❌</td>
+                    <td colspan="4" style="text-align:center;color:red;">
+                        No donors found ❌
+                    </td>
                 </tr>
             `;
             return;
@@ -150,10 +157,11 @@ async function searchDonors() {
         });
 
     } catch (err) {
-        console.log("Search error:", err);
+        console.log(err);
         alert("Search failed ❌");
     }
 }
+
 function login() {
 
     const id = document.getElementById("hospitalId")?.value;
