@@ -87,7 +87,7 @@ async function searchDonors() {
     const city = document.getElementById("city").value.trim();
 
     if (!blood || !city) {
-        alert("Select Blood & City");
+        alert("Select Blood Group and City");
         return;
     }
 
@@ -132,11 +132,10 @@ async function searchDonors() {
         });
 
     } catch (err) {
-        console.log(err);
-        alert("Server error ❌");
+        console.log("Search Error:", err);
+        alert("Server Error ❌");
     }
 }
-
 /* ===============================
    ADMIN LOAD
 ================================*/
