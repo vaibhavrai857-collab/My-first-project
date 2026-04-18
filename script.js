@@ -43,13 +43,13 @@ document.getElementById("donorForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const donor = {
-        name: document.getElementById("name").value,
-        age: document.getElementById("age").value,
-        blood: document.getElementById("blood").value,
-        phone: document.getElementById("phone").value,
-        city: document.getElementById("city").value,
-        aadhaar: document.getElementById("aadhaar").value
-    };
+    name: document.getElementById("name").value.trim(),
+    age: document.getElementById("age").value,
+    blood: document.getElementById("blood").value.trim().toUpperCase().replace(/\s/g, ""),
+    phone: document.getElementById("phone").value.trim(),
+    city: document.getElementById("city").value.trim().toLowerCase(),
+    aadhaar: document.getElementById("aadhaar").value.trim()
+};
 
     try {
         const res = await fetch(`${BASE_URL}/add-donor`, {
