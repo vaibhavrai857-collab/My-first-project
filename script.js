@@ -154,7 +154,24 @@ async function searchDonors() {
         alert("Search failed ❌");
     }
 }
+function login() {
 
+    const id = document.getElementById("hospitalId")?.value;
+    const password = document.getElementById("password")?.value;
+
+    // simple static login (you can upgrade later)
+    if (id === "admin" && password === "admin123") {
+
+        localStorage.setItem("admin", "true");
+
+        alert("Login Successful ✅");
+
+        window.location = "admin.html";
+
+    } else {
+        alert("Invalid Credentials ❌");
+    }
+}
 
 /* ===============================
    ADMIN - LOAD DONORS
