@@ -121,7 +121,9 @@ async function searchDonors() {
 
     console.log("Cleaned input:", blood, city);
 
-    const res = await fetch(`${BASE_URL}/search?blood=${blood}&city=${city}`);
+  const res = await fetch(
+  `${BASE_URL}/search?blood=${encodeURIComponent(blood)}&city=${encodeURIComponent(city)}`
+);
     const data = await res.json();
 
     const table = document.getElementById("results");
