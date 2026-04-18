@@ -300,3 +300,47 @@ function logout() {
   localStorage.setItem("justLoggedOut", "true");
   window.location = "login.html";
 }
+/* ===============================
+   AUTHORIZED HOSPITAL PARTNERSHIP
+================================*/
+document.getElementById("hospitalForm")?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const authCode = document.getElementById("authorizationCode").value.trim();
+
+  /* TEMPORARY AUTHORIZATION CODE */
+  const validCode = "HOSPITAL2026";
+
+  if (authCode !== validCode) {
+    alert("Only authorized hospital representatives can apply ❌");
+    return;
+  }
+
+  const hospital = {
+    hospital_name: document.getElementById("hospitalName").value.trim(),
+    contact_person: document.getElementById("contactPerson").value.trim(),
+    designation: document.getElementById("designation").value,
+    phone: document.getElementById("hospitalPhone").value.trim(),
+    email: document.getElementById("hospitalEmail").value.trim(),
+    city: document.getElementById("hospitalCity").value.trim()
+  };
+
+  try {
+    const res = await fetch(`${BASE_URL}/add-hospital`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(hospital)
+    });
+
+    const data = await res.json();
+
+    alert(data.message);
+    e.target.reset();
+
+  } catch (err) {
+    console.log(err);
+    alert("Hospital Registration Failed ❌");
+  }
+});
