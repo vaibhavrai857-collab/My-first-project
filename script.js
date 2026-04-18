@@ -105,26 +105,21 @@ document.getElementById("requestForm")?.addEventListener("submit", async (e) => 
 ================================*/
 async function searchDonors() {
 
-    let blood = document.getElementById("blood_group")?.value;
-    let city = document.getElementById("city")?.value;
+    const bloodEl = document.getElementById("blood_group");
+    const cityEl = document.getElementById("city");
 
-    console.log("Raw input:", blood, city);
+    const blood = bloodEl ? bloodEl.value : "";
+    const city = cityEl ? cityEl.value : "";
 
-    if (!blood || !city) {
-        alert("Select Blood Group & City");
-        return;
-    }
+    console.log("SENDING:", blood, city);
 
-    // CLEAN INPUT (MOST IMPORTANT FIX)
-    blood = blood.trim().toUpperCase().replace(/\s+/g, "");
-    city = city.trim().toLowerCase().replace(/\s+/g, "");
+    const res = await fetch(
+        `${BASE_URL}/search?blood=${encodeURIComponent(blood)}&city=${encodeURIComponent(city)}`
+    );
 
-    console.log("Cleaned input:", blood, city);
-
-  const res = await fetch(
-  `${BASE_URL}/search?blood=${encodeURIComponent(blood)}&city=${encodeURIComponent(city)}`
-);
     const data = await res.json();
+
+    console.log("RESPONSE:", data);
 
     const table = document.getElementById("results");
 
@@ -140,9 +135,7 @@ async function searchDonors() {
     if (!data || data.length === 0) {
         table.innerHTML += `
             <tr>
-                <td colspan="4" style="text-align:center;color:red;">
-                    No donors found ❌
-                </td>
+                <td colspan="4">No donors found ❌</td>
             </tr>
         `;
         return;
