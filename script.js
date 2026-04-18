@@ -134,7 +134,7 @@ async function searchDonors() {
             </tr>
         `;
 
-        if (!data || data.length === 0) {
+        if (!Array.isArray(data) || data.length === 0) {
             table.innerHTML += `
                 <tr>
                     <td colspan="4" style="text-align:center;color:red;">
@@ -157,11 +157,10 @@ async function searchDonors() {
         });
 
     } catch (err) {
-        console.log(err);
+        console.log("Search error:", err);
         alert("Search failed ❌");
     }
 }
-
 function login() {
 
     const id = document.getElementById("hospitalId")?.value;
