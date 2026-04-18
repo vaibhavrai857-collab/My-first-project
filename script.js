@@ -8,7 +8,7 @@ const BASE_URL = "https://bloodbank-api-znui.onrender.com";
 /* ===============================
    INIT
 ================================*/
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
     loadCounts();
 });
 
@@ -21,13 +21,11 @@ async function loadCounts() {
         const donorEl = document.getElementById("donorCount");
         const requestEl = document.getElementById("requestCount");
 
-        const [d1, r1] = await Promise.all([
-            fetch(`${BASE_URL}/donors`),
-            fetch(`${BASE_URL}/requests`)
-        ]);
+        const donorsRes = await fetch(`${BASE_URL}/donors`);
+        const requestsRes = await fetch(`${BASE_URL}/requests`);
 
-        const donors = await d1.json();
-        const requests = await r1.json();
+        const donors = await donorsRes.json();
+        const requests = await requestsRes.json();
 
         if (donorEl) donorEl.innerText = donors.length;
         if (requestEl) requestEl.innerText = requests.length;
@@ -40,7 +38,6 @@ async function loadCounts() {
 
 /* ===============================
    REGISTER DONOR
-   (3 MONTH RULE HANDLED IN BACKEND)
 ================================*/
 document.getElementById("donorForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -104,7 +101,7 @@ document.getElementById("requestForm")?.addEventListener("submit", async (e) => 
 
 
 /* ===============================
-   SEARCH DONOR
+   SEARCH DONOR (FIXED)
 ================================*/
 async function searchDonors() {
 
@@ -121,6 +118,7 @@ async function searchDonors() {
         const data = await res.json();
 
         const table = document.getElementById("results");
+        if (!table) return;
 
         table.innerHTML = `
             <tr>
@@ -131,12 +129,10 @@ async function searchDonors() {
             </tr>
         `;
 
-        if (!data.length) {
+        if (!Array.isArray(data) || data.length === 0) {
             table.innerHTML += `
                 <tr>
-                    <td colspan="4" style="text-align:center;color:red;">
-                        No donors found ❌
-                    </td>
+                    <td colspan="4">No donors found ❌</td>
                 </tr>
             `;
             return;
@@ -154,7 +150,7 @@ async function searchDonors() {
         });
 
     } catch (err) {
-        console.log(err);
+        console.log("Search error:", err);
         alert("Search failed ❌");
     }
 }
@@ -164,6 +160,7 @@ async function searchDonors() {
    ADMIN - LOAD DONORS
 ================================*/
 async function loadDonors() {
+
     try {
         const res = await fetch(`${BASE_URL}/donors`);
         const data = await res.json();
@@ -188,25 +185,31 @@ async function loadDonors() {
                     <td>${d.blood}</td>
                     <td>${d.phone}</td>
                     <td>${d.city}</td>
-                    <td>
-                        <button onclick="deleteDonor(${d.id})">Delete</button>
-                    </td>
+                    <td><button onclick="deleteDonor(${d.id})">Delete</button></td>
                 </tr>
             `;
         });
 
     } catch (err) {
-        console.log(err);
+        console.log("Donor load error:", err);
     }
 }
 
 
 /* ===============================
-   ADMIN - LOAD REQUESTS
+   ADMIN - LOAD REQUESTS (FIXED CRASH)
 ================================*/
 async function loadRequests() {
+
     try {
         const res = await fetch(`${BASE_URL}/requests`);
+
+        // FIX: if backend missing /requests, prevent crash
+        if (!res.ok) {
+            console.log("Requests API not found");
+            return;
+        }
+
         const data = await res.json();
 
         const table = document.getElementById("requestTable");
@@ -229,15 +232,13 @@ async function loadRequests() {
                     <td>${r.blood}</td>
                     <td>${r.phone}</td>
                     <td>${r.city}</td>
-                    <td>
-                        <button onclick="deleteRequest(${r.id})">Delete</button>
-                    </td>
+                    <td><button onclick="deleteRequest(${r.id})">Delete</button></td>
                 </tr>
             `;
         });
 
     } catch (err) {
-        console.log(err);
+        console.log("Request load error:", err);
     }
 }
 
