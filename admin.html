@@ -6,12 +6,12 @@
   <link rel="stylesheet" href="style.css">
 
   <!-- Access protection -->
- <script>
-if (localStorage.getItem("admin") !== "true") {
-  alert("Access Denied ❌");
-  window.location = "login.html";
-}
-</script>
+  <script>
+    if (localStorage.getItem("admin") !== "true") {
+      alert("Access Denied ❌");
+      window.location = "login.html";
+    }
+  </script>
 </head>
 
 <body class="search">
@@ -22,7 +22,7 @@ if (localStorage.getItem("admin") !== "true") {
   <button onclick="logout()">Logout</button>
 </div>
 
-<!-- 👨‍⚕️ DOCTOR IMAGE SECTION -->
+<!-- HEADER -->
 <div style="text-align:center; margin-top:25px;">
   <img src="doctor.png" alt="Doctor Image"
        style="width:150px; height:150px; border-radius:50%;
@@ -32,19 +32,42 @@ if (localStorage.getItem("admin") !== "true") {
   <p style="color:gray;">Blood Bank Management Dashboard</p>
 </div>
 
-<!-- TABLE SECTION -->
+<!-- =======================
+     DONORS TABLE
+======================= -->
 <div class="form-container">
   <h2>Registered Donors</h2>
 </div>
 
 <table id="adminTable"></table>
 
+<!-- =======================
+     REQUESTS TABLE
+======================= -->
+<div class="form-container">
+  <h2>Blood Requests</h2>
+</div>
+
+<table id="requestTable"></table>
+
 <script src="script.js"></script>
 
 <script>
+/* =======================
+   LOAD DATA ON OPEN
+======================= */
 window.onload = function () {
   loadDonors();
+  loadRequests();
 };
+
+/* =======================
+   LOGOUT FUNCTION
+======================= */
+function logout() {
+  localStorage.removeItem("admin");
+  window.location = "login.html";
+}
 </script>
 
 </body>
