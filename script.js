@@ -139,34 +139,45 @@ async function searchDonors() {
 /* ===============================
    ADMIN LOAD
 ================================*/
-async function loadDonors() {
-    const res = await fetch(`${BASE_URL}/donors`);
-    const data = await res.json();
 
-    const table = document.getElementById("adminTable");
+/* ===============================
+   ADMIN LOGIN
+================================*/
+function login() {
 
-    table.innerHTML = `
-        <tr>
-            <th>Name</th>
-            <th>Blood</th>
-            <th>Phone</th>
-            <th>City</th>
-            <th>Action</th>
-        </tr>
-    `;
+    const id = document.getElementById("hospitalId").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    data.forEach(d => {
-        table.innerHTML += `
-            <tr>
-                <td>${d.name}</td>
-                <td>${d.blood}</td>
-                <td>${d.phone}</td>
-                <td>${d.city}</td>
-                <td><button onclick="deleteDonor(${d.id})">Delete</button></td>
-            </tr>
-        `;
-    });
+    // SIMPLE STATIC LOGIN (you can upgrade later)
+    const ADMIN_ID = "admin";
+    const ADMIN_PASSWORD = "1234";
+
+    if (id === ADMIN_ID && password === ADMIN_PASSWORD) {
+
+        localStorage.setItem("admin", "true");
+
+        alert("Login Successful ✅");
+
+        window.location.href = "admin.html";
+
+    } else {
+        alert("Invalid Credentials ❌");
+    }
 }
+
+
+/* ===============================
+   LOGOUT
+================================*/
+function logout() {
+
+    localStorage.removeItem("admin");
+
+    localStorage.setItem("justLoggedOut", "true");
+
+    window.location.href = "login.html";
+}
+
 
 /* ===============================
    DELETE DONOR
