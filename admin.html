@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 
-  <!-- Access protection -->
+  <!-- Access Protection -->
   <script>
     if (localStorage.getItem("admin") !== "true") {
       alert("Access Denied ❌");
@@ -19,31 +19,45 @@
 <!-- NAVBAR -->
 <div class="navbar">
   <h2>🩸 Blood Bank Admin</h2>
-  <button onclick="logout()">Logout</button>
+
+  <button onclick="logout()">
+    Logout
+  </button>
 </div>
 
 <!-- HEADER -->
 <div style="text-align:center; margin-top:25px;">
-  <img src="doctor.png" alt="Doctor Image"
-       style="width:150px; height:150px; border-radius:50%;
-       object-fit:cover; box-shadow:0 6px 15px rgba(0,0,0,0.3);">
 
-  <h3 style="margin-top:10px;">Welcome Admin</h3>
-  <p style="color:gray;">Blood Bank Management Dashboard</p>
+  <img
+    src="doctor.png"
+    alt="Doctor Image"
+    style="
+      width:150px;
+      height:150px;
+      border-radius:50%;
+      object-fit:cover;
+      box-shadow:0 6px 15px rgba(0,0,0,0.3);
+    "
+  >
+
+  <h3 style="margin-top:10px;">
+    Welcome Admin
+  </h3>
+
+  <p style="color:gray;">
+    Blood Bank Management Dashboard
+  </p>
+
 </div>
 
-<!-- =======================
-     DONORS TABLE
-======================= -->
+<!-- DONORS TABLE -->
 <div class="form-container">
   <h2>Registered Donors</h2>
 </div>
 
 <table id="adminTable"></table>
 
-<!-- =======================
-     REQUESTS TABLE
-======================= -->
+<!-- REQUESTS TABLE -->
 <div class="form-container">
   <h2>Blood Requests</h2>
 </div>
@@ -53,19 +67,14 @@
 <script src="script.js"></script>
 
 <script>
-/* =======================
-   LOAD DATA ON OPEN
-======================= */
 window.onload = function () {
   loadDonors();
   loadRequests();
 };
 
-/* =======================
-   LOGOUT FUNCTION
-======================= */
 function logout() {
   localStorage.removeItem("admin");
+  localStorage.setItem("justLoggedOut", "true");
   window.location = "login.html";
 }
 </script>
