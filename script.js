@@ -82,43 +82,59 @@ document.getElementById("requestForm")?.addEventListener("submit", async (e) => 
    SEARCH DONOR
 ================================*/
 async function searchDonors() {
-    const blood = document.getElementById("blood_group").value;
-    const city = document.getElementById("city").value;
+
+    const blood = document.getElementById("blood_group").value.trim();
+    const city = document.getElementById("city").value.trim();
 
     if (!blood || !city) {
         alert("Select Blood & City");
         return;
     }
 
-    const res = await fetch(`${BASE_URL}/search?blood=${blood}&city=${city}`);
-    const data = await res.json();
+    try {
+        const res = await fetch(
+            `${BASE_URL}/search?blood=${encodeURIComponent(blood)}&city=${encodeURIComponent(city)}`
+        );
 
-    const table = document.getElementById("results");
+        const data = await res.json();
 
-    table.innerHTML = `
-        <tr>
-            <th>Name</th>
-            <th>Blood</th>
-            <th>Phone</th>
-            <th>City</th>
-        </tr>
-    `;
+        const table = document.getElementById("results");
 
-    if (!data.length) {
-        table.innerHTML += `<tr><td colspan="4">No donors found ❌</td></tr>`;
-        return;
-    }
-
-    data.forEach(d => {
-        table.innerHTML += `
+        table.innerHTML = `
             <tr>
-                <td>${d.name}</td>
-                <td>${d.blood}</td>
-                <td>${d.phone}</td>
-                <td>${d.city}</td>
+                <th>Name</th>
+                <th>Blood</th>
+                <th>Phone</th>
+                <th>City</th>
             </tr>
         `;
-    });
+
+        if (!Array.isArray(data) || data.length === 0) {
+            table.innerHTML += `
+                <tr>
+                    <td colspan="4" style="text-align:center;color:red;">
+                        No donors found ❌
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        data.forEach(d => {
+            table.innerHTML += `
+                <tr>
+                    <td>${d.name}</td>
+                    <td>${d.blood}</td>
+                    <td>${d.phone}</td>
+                    <td>${d.city}</td>
+                </tr>
+            `;
+        });
+
+    } catch (err) {
+        console.log(err);
+        alert("Server error ❌");
+    }
 }
 
 /* ===============================
