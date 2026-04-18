@@ -14,23 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* ===============================
-   DASHBOARD COUNTS (SAFE)
+   DASHBOARD COUNTS
 ================================*/
 async function loadCounts() {
     try {
         const donorEl = document.getElementById("donorCount");
         const requestEl = document.getElementById("requestCount");
 
-        if (donorEl) donorEl.innerText = "Loading...";
-        if (requestEl) requestEl.innerText = "Loading...";
-
-        const [donorsRes, requestsRes] = await Promise.all([
+        const [d1, r1] = await Promise.all([
             fetch(`${BASE_URL}/donors`),
             fetch(`${BASE_URL}/requests`)
         ]);
 
-        const donors = await donorsRes.json();
-        const requests = await requestsRes.json();
+        const donors = await d1.json();
+        const requests = await r1.json();
 
         if (donorEl) donorEl.innerText = donors.length;
         if (requestEl) requestEl.innerText = requests.length;
@@ -43,17 +40,18 @@ async function loadCounts() {
 
 /* ===============================
    REGISTER DONOR
+   (3 MONTH RULE HANDLED IN BACKEND)
 ================================*/
 document.getElementById("donorForm")?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const donor = {
-        name: document.getElementById("name").value.trim(),
+        name: document.getElementById("name").value,
         age: document.getElementById("age").value,
         blood: document.getElementById("blood").value,
-        phone: document.getElementById("phone").value.trim(),
-        city: document.getElementById("city").value.trim(),
-        aadhaar: document.getElementById("aadhaar").value.trim()
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value,
+        aadhaar: document.getElementById("aadhaar").value
     };
 
     try {
@@ -64,7 +62,8 @@ document.getElementById("donorForm")?.addEventListener("submit", async (e) => {
         });
 
         const data = await res.json();
-        alert(data.message || "Success");
+
+        alert(data.message);
         e.target.reset();
 
     } catch (err) {
@@ -81,10 +80,10 @@ document.getElementById("requestForm")?.addEventListener("submit", async (e) => 
     e.preventDefault();
 
     const req = {
-        name: document.getElementById("patientName").value.trim(),
+        name: document.getElementById("patientName").value,
         blood: document.getElementById("bloodGroup").value,
-        phone: document.getElementById("phone").value.trim(),
-        city: document.getElementById("city").value.trim()
+        phone: document.getElementById("phone").value,
+        city: document.getElementById("city").value
     };
 
     try {
@@ -135,7 +134,9 @@ async function searchDonors() {
         if (!data.length) {
             table.innerHTML += `
                 <tr>
-                    <td colspan="4">No donors found ❌</td>
+                    <td colspan="4" style="text-align:center;color:red;">
+                        No donors found ❌
+                    </td>
                 </tr>
             `;
             return;
@@ -163,13 +164,11 @@ async function searchDonors() {
    ADMIN - LOAD DONORS
 ================================*/
 async function loadDonors() {
-
     try {
         const res = await fetch(`${BASE_URL}/donors`);
         const data = await res.json();
 
         const table = document.getElementById("adminTable");
-
         if (!table) return;
 
         table.innerHTML = `
@@ -206,13 +205,11 @@ async function loadDonors() {
    ADMIN - LOAD REQUESTS
 ================================*/
 async function loadRequests() {
-
     try {
         const res = await fetch(`${BASE_URL}/requests`);
         const data = await res.json();
 
         const table = document.getElementById("requestTable");
-
         if (!table) return;
 
         table.innerHTML = `
@@ -270,8 +267,9 @@ async function deleteRequest(id) {
 
 
 /* ===============================
-   NOTIFICATION (OPTIONAL)
+   ADMIN LOGOUT
 ================================*/
-function showNotification(msg) {
-    alert(msg);
+function logout() {
+    localStorage.removeItem("admin");
+    window.location = "login.html";
 }
