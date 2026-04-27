@@ -8,45 +8,39 @@
 body {
   background: #f5f7fb;
   color: #222;
-  overflow-x: hidden;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* NAVBAR */
 .navbar {
-  width: 100%;
   background: #ffffff;
-  padding: 18px 8%;
+  padding: 20px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  position: sticky;
-  top: 0;
-  z-index: 999;
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .logo-section h2 {
   color: #b30000;
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .logo-section p {
-  font-size: 14px;
   color: #666;
+  font-size: 14px;
 }
 
 .menu {
   display: flex;
-  gap: 28px;
+  gap: 25px;
   flex-wrap: wrap;
 }
 
 .menu a {
   text-decoration: none;
   color: #222;
-  font-weight: 600;
+  font-weight: bold;
   transition: 0.3s;
 }
 
@@ -54,9 +48,7 @@ body {
   color: #b30000;
 }
 
-/* =========================
-   HERO SECTION
-========================= */
+/* HERO */
 .hero {
   padding: 70px 8%;
   display: flex;
@@ -64,6 +56,7 @@ body {
   align-items: center;
   gap: 40px;
   flex-wrap: wrap;
+  background: white;
 }
 
 .hero-left {
@@ -73,12 +66,11 @@ body {
 
 .hero-left h4 {
   color: #b30000;
-  letter-spacing: 2px;
   margin-bottom: 15px;
 }
 
 .hero-left h1 {
-  font-size: 56px;
+  font-size: 55px;
   line-height: 1.2;
   margin-bottom: 20px;
 }
@@ -100,25 +92,18 @@ body {
   flex-wrap: wrap;
 }
 
+.hero-buttons a {
+  text-decoration: none;
+}
+
 .hero-buttons button {
   background: #b30000;
   color: white;
   border: none;
   padding: 14px 24px;
-  border-radius: 8px;
-  font-size: 15px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.hero-buttons button:hover {
-  background: #8f0000;
-}
-
-.hero-right {
-  flex: 1;
-  text-align: center;
-  min-width: 300px;
+  font-size: 15px;
 }
 
 .hero-right img {
@@ -127,11 +112,9 @@ body {
   border-radius: 20px;
 }
 
-/* =========================
-   DASHBOARD
-========================= */
+/* DASHBOARD */
 .dashboard {
-  padding: 20px 8%;
+  padding: 30px 8%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
@@ -142,35 +125,32 @@ body {
   padding: 30px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .box h3 {
-  font-size: 34px;
   color: #b30000;
-  margin-bottom: 10px;
+  font-size: 34px;
 }
 
 .box p {
+  margin-top: 10px;
   color: #666;
-  font-size: 15px;
 }
 
-/* =========================
-   SIMPLE BOX
-========================= */
+/* CONTENT BOX */
 .simple-box {
-  width: 84%;
-  margin: 35px auto;
+  width: 85%;
+  margin: 30px auto;
   background: white;
   padding: 35px;
   border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .simple-box h2 {
-  margin-bottom: 20px;
   color: #b30000;
+  margin-bottom: 20px;
 }
 
 .simple-box p {
@@ -182,12 +162,9 @@ body {
 .simple-box ul {
   padding-left: 20px;
   line-height: 2;
-  color: #444;
 }
 
-/* =========================
-   FORM
-========================= */
+/* FORM */
 input,
 select {
   width: 100%;
@@ -195,7 +172,6 @@ select {
   margin: 10px 0;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 15px;
 }
 
 button {
@@ -204,20 +180,11 @@ button {
   color: white;
   border: none;
   padding: 14px;
-  margin-top: 10px;
   border-radius: 8px;
-  font-size: 15px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
-button:hover {
-  background: #8f0000;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 .footer {
   background: #111;
   color: white;
@@ -226,24 +193,15 @@ button:hover {
   margin-top: 40px;
 }
 
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
-@media (max-width: 768px) {
+/* MOBILE */
+@media(max-width:768px) {
   .navbar {
-    padding: 18px 5%;
     flex-direction: column;
-    gap: 15px;
     text-align: center;
-  }
-
-  .menu {
-    justify-content: center;
     gap: 15px;
   }
 
   .hero {
-    padding: 50px 5%;
     text-align: center;
   }
 
@@ -257,6 +215,5 @@ button:hover {
 
   .simple-box {
     width: 92%;
-    padding: 25px;
   }
 }
