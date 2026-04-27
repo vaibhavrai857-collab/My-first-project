@@ -1,3 +1,7 @@
+/* home.css */
+/* ONLY for index.html */
+/* Other pages will keep using old style.css */
+
 * {
     margin: 0;
     padding: 0;
@@ -19,7 +23,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 18px 60px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
     flex-wrap: wrap;
 }
 
@@ -36,7 +40,7 @@ body {
 
 .logo-text h2 {
     color: #d40000;
-    font-size: 32px;
+    font-size: 30px;
 }
 
 .logo-text p {
@@ -71,7 +75,7 @@ body {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 40px;
-    padding: 50px 70px;
+    padding: 60px 70px;
     background: #ffffff;
 }
 
@@ -83,7 +87,7 @@ body {
 }
 
 .hero-left h1 {
-    font-size: 64px;
+    font-size: 62px;
     line-height: 1.1;
     margin-bottom: 20px;
     color: #111;
@@ -94,7 +98,7 @@ body {
 }
 
 .hero-left p {
-    font-size: 20px;
+    font-size: 19px;
     line-height: 1.8;
     color: #444;
     margin-bottom: 30px;
@@ -134,7 +138,7 @@ body {
 .hero-right img {
     width: 100%;
     max-width: 650px;
-    border-radius: 14px;
+    border-radius: 16px;
 }
 
 /* =========================
@@ -152,7 +156,7 @@ body {
     border-radius: 14px;
     padding: 28px;
     text-align: center;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
 .card h3 {
@@ -180,7 +184,7 @@ body {
     background: #ffffff;
     border-radius: 14px;
     padding: 28px;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
 .box h2 {
@@ -201,12 +205,12 @@ body {
 
 .box ul li {
     margin-bottom: 12px;
-    line-height: 1.6;
+    line-height: 1.7;
     color: #333;
 }
 
 /* =========================
-   FORM
+   FORM SECTION
 ========================= */
 .box input,
 .box select {
@@ -243,7 +247,7 @@ body {
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE DESIGN
 ========================= */
 @media (max-width: 1100px) {
     .hero,
