@@ -1,30 +1,32 @@
-/* home.css */
-/* ONLY for index.html */
-/* Other pages will keep using old style.css */
-
+/* ===============================
+   GLOBAL RESET
+================================*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-body {
-    background: #f7f7f7;
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: #f5f7fb;
     color: #222;
 }
 
-/* =========================
+/* ===============================
    NAVBAR
-========================= */
+================================*/
 .navbar {
     background: #ffffff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 60px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 18px 50px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 .logo {
@@ -35,7 +37,7 @@ body {
 
 .logo i {
     font-size: 42px;
-    color: #e60000;
+    color: #d40000;
 }
 
 .logo-text h2 {
@@ -44,14 +46,14 @@ body {
 }
 
 .logo-text p {
-    color: #555;
+    color: #666;
     font-size: 14px;
 }
 
 .menu {
     display: flex;
-    gap: 28px;
     flex-wrap: wrap;
+    gap: 20px;
     align-items: center;
 }
 
@@ -64,30 +66,30 @@ body {
 
 .menu a:hover,
 .menu a.active {
-    color: #e60000;
+    color: #d40000;
 }
 
-/* =========================
+/* ===============================
    HERO SECTION
-========================= */
+================================*/
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     gap: 40px;
-    padding: 60px 70px;
+    padding: 60px;
     background: #ffffff;
 }
 
 .hero-left h4 {
-    color: #e60000;
+    color: #d40000;
     margin-bottom: 20px;
     letter-spacing: 1px;
     font-size: 18px;
 }
 
 .hero-left h1 {
-    font-size: 62px;
+    font-size: 58px;
     line-height: 1.1;
     margin-bottom: 20px;
     color: #111;
@@ -98,7 +100,7 @@ body {
 }
 
 .hero-left p {
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.8;
     color: #444;
     margin-bottom: 30px;
@@ -106,7 +108,7 @@ body {
 
 .hero-buttons {
     display: flex;
-    gap: 18px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
@@ -115,19 +117,18 @@ body {
 }
 
 .btn {
-    padding: 15px 28px;
+    padding: 14px 28px;
+    border: 2px solid #d40000;
     border-radius: 10px;
-    border: 2px solid #e60000;
     background: white;
-    color: #e60000;
-    font-weight: 700;
+    color: #d40000;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 15px;
     transition: 0.3s;
 }
 
 .btn.primary {
-    background: #e60000;
+    background: #d40000;
     color: white;
 }
 
@@ -139,124 +140,174 @@ body {
     width: 100%;
     max-width: 650px;
     border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-/* =========================
-   STATS SECTION
-========================= */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 25px 60px;
-}
-
-.card {
-    background: #ffffff;
-    border-radius: 14px;
+/* ===============================
+   SIMPLE BOX / FORM BOX
+================================*/
+.form-container,
+.simple-box {
+    width: min(550px, 92%);
+    margin: 30px auto;
     padding: 28px;
-    text-align: center;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    background: #ffffff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
 }
 
-.card h3 {
-    font-size: 36px;
+.simple-box h2,
+.form-container h2 {
+    color: #d40000;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* ===============================
+   INPUTS
+================================*/
+input,
+select {
+    width: 100%;
+    padding: 13px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #d40000;
+}
+
+/* ===============================
+   BUTTONS
+================================*/
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #d40000;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* ===============================
+   DASHBOARD STATS
+================================*/
+.stats,
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 25px 50px;
+}
+
+.card,
+.box {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.card h3,
+.box h3 {
+    font-size: 34px;
     color: #d40000;
     margin-bottom: 10px;
 }
 
-.card p {
+.card p,
+.box p {
     color: #444;
-    font-size: 16px;
+    line-height: 1.7;
 }
 
-/* =========================
-   MAIN GRID
-========================= */
+/* ===============================
+   MAIN GRID SECTION
+================================*/
 .main-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    padding: 10px 60px 40px;
+    padding: 10px 50px 40px;
 }
 
-.box {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 28px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+.main-grid .box {
+    text-align: left;
 }
 
-.box h2 {
+.main-grid .box h2 {
     color: #d40000;
-    margin-bottom: 18px;
-    font-size: 24px;
-}
-
-.box p {
-    line-height: 1.8;
-    color: #444;
     margin-bottom: 15px;
 }
 
-.box ul {
+.main-grid .box ul {
     padding-left: 20px;
 }
 
-.box ul li {
-    margin-bottom: 12px;
-    line-height: 1.7;
-    color: #333;
+.main-grid .box ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
 }
 
-/* =========================
-   FORM SECTION
-========================= */
-.box input,
-.box select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 14px;
+/* ===============================
+   TABLE
+================================*/
+table {
+    width: min(1000px, 95%);
+    margin: 30px auto;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
-.apply-btn {
-    width: 100%;
-    background: #6a00d4;
+th {
+    background: #d40000;
     color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 10px;
-    cursor: pointer;
 }
 
-/* =========================
+th, td {
+    padding: 14px;
+    border: 1px solid #eee;
+    text-align: left;
+}
+
+/* ===============================
    FOOTER
-========================= */
+================================*/
 .footer {
     background: #d40000;
     color: white;
     text-align: center;
-    padding: 26px;
-    font-size: 17px;
+    padding: 24px;
+    font-size: 16px;
+    margin-top: 30px;
 }
 
-/* =========================
-   RESPONSIVE DESIGN
-========================= */
-@media (max-width: 1100px) {
-    .hero,
-    .stats,
-    .main-grid {
-        grid-template-columns: 1fr;
-    }
-
+/* ===============================
+   MOBILE RESPONSIVE
+================================*/
+@media (max-width: 992px) {
     .hero {
+        grid-template-columns: 1fr;
         text-align: center;
     }
 
@@ -264,34 +315,44 @@ body {
         justify-content: center;
     }
 
+    .hero-left h1 {
+        font-size: 42px;
+    }
+
     .navbar {
         flex-direction: column;
-        gap: 20px;
+        text-align: center;
     }
 
     .menu {
         justify-content: center;
     }
-
-    .hero-left h1 {
-        font-size: 42px;
-    }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .navbar,
     .hero,
     .stats,
+    .dashboard,
     .main-grid {
         padding-left: 20px;
         padding-right: 20px;
     }
 
     .hero-left h1 {
-        font-size: 34px;
+        font-size: 32px;
     }
 
     .btn {
         width: 100%;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        font-size: 16px;
     }
 }
