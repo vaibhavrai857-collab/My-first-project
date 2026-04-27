@@ -1,0 +1,298 @@
+/* ===============================
+   HOME PAGE ONLY CSS (home.css)
+   Premium Homepage Design
+================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8fc;
+    color: #222;
+}
+
+/* ===============================
+   NAVBAR
+================================*/
+.navbar {
+    background: #ffffff;
+    padding: 18px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+    flex-wrap: wrap;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo i {
+    font-size: 42px;
+    color: #d40000;
+}
+
+.logo-text h2 {
+    font-size: 32px;
+    color: #d40000;
+}
+
+.logo-text p {
+    font-size: 14px;
+    color: #666;
+}
+
+.menu {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    color: #d40000;
+}
+
+/* ===============================
+   HERO SECTION
+================================*/
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 60px;
+    background: #ffffff;
+}
+
+.hero-left h4 {
+    color: #d40000;
+    margin-bottom: 20px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.hero-left h1 {
+    font-size: 62px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #111;
+}
+
+.hero-left h1 span {
+    color: #d40000;
+}
+
+.hero-left p {
+    font-size: 19px;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons a {
+    text-decoration: none;
+}
+
+.btn {
+    padding: 15px 28px;
+    border-radius: 10px;
+    border: 2px solid #d40000;
+    background: white;
+    color: #d40000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn.primary {
+    background: #d40000;
+    color: white;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.hero-right img {
+    width: 100%;
+    max-width: 650px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* ===============================
+   STATS SECTION
+================================*/
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 25px 60px;
+}
+
+.card {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    font-size: 36px;
+    color: #d40000;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: #444;
+    font-size: 16px;
+}
+
+/* ===============================
+   MAIN GRID
+================================*/
+.main-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 10px 60px 40px;
+}
+
+.box {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.box h2 {
+    color: #d40000;
+    margin-bottom: 18px;
+    font-size: 24px;
+}
+
+.box p {
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.box ul {
+    padding-left: 20px;
+}
+
+.box ul li {
+    margin-bottom: 12px;
+    line-height: 1.7;
+    color: #333;
+}
+
+/* ===============================
+   FORM SECTION
+================================*/
+.box input,
+.box select {
+    width: 100%;
+    padding: 13px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.apply-btn {
+    width: 100%;
+    background: #6a00d4;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* ===============================
+   FOOTER
+================================*/
+.footer {
+    background: #d40000;
+    color: white;
+    text-align: center;
+    padding: 26px;
+    font-size: 17px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================*/
+@media (max-width: 1100px) {
+    .hero,
+    .stats,
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        text-align: center;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu {
+        justify-content: center;
+    }
+
+    .hero-left h1 {
+        font-size: 42px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar,
+    .hero,
+    .stats,
+    .main-grid {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero-left h1 {
+        font-size: 34px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
