@@ -1,91 +1,92 @@
+/* style.css */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
 }
 
+/* BODY */
 body {
-  background: #f5f7fb;
+  font-family: Arial, sans-serif;
+  background: #f8f9fa;
   color: #222;
+}
+
+/* HOME BACKGROUND */
+body.home {
+  background: linear-gradient(to right, #fff5f5, #fff);
 }
 
 /* NAVBAR */
 .navbar {
-  background: #ffffff;
-  padding: 20px 8%;
+  background: #8B0000;
+  color: white;
+  padding: 18px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  flex-wrap: wrap;
 }
 
-.logo-section h2 {
-  color: #b30000;
-  font-size: 32px;
-}
-
-.logo-section p {
-  color: #666;
-  font-size: 14px;
+.navbar h2 {
+  font-size: 28px;
 }
 
 .menu {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .menu a {
+  color: white;
   text-decoration: none;
-  color: #222;
   font-weight: bold;
   transition: 0.3s;
 }
 
 .menu a:hover {
-  color: #b30000;
+  color: #ffd700;
 }
 
-/* HERO */
+/* HERO SECTION */
 .hero {
-  padding: 70px 8%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 40px;
+  padding: 60px 8%;
   flex-wrap: wrap;
-  background: white;
+  gap: 40px;
 }
 
-.hero-left {
+.hero-content {
   flex: 1;
   min-width: 300px;
 }
 
-.hero-left h4 {
-  color: #b30000;
-  margin-bottom: 15px;
+.hero-content h4 {
+  color: #8B0000;
+  margin-bottom: 10px;
 }
 
-.hero-left h1 {
+.hero-content h1 {
   font-size: 55px;
   line-height: 1.2;
   margin-bottom: 20px;
 }
 
-.hero-left h1 span {
-  color: #b30000;
+.hero-content h1 span {
+  color: #c0392b;
 }
 
-.hero-left p {
+.hero-content p {
   font-size: 18px;
-  color: #555;
   line-height: 1.7;
   margin-bottom: 30px;
 }
 
+/* HERO BUTTONS */
 .hero-buttons {
   display: flex;
   gap: 15px;
@@ -96,66 +97,76 @@ body {
   text-decoration: none;
 }
 
-.hero-buttons button {
-  background: #b30000;
+button {
+  background: linear-gradient(45deg, #ff4757, #c0392b);
   color: white;
   border: none;
-  padding: 14px 24px;
-  border-radius: 10px;
+  padding: 14px 22px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 15px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.hero-right img {
+button:hover {
+  transform: scale(1.05);
+}
+
+/* HERO IMAGE */
+.hero-image {
+  flex: 1;
+  text-align: center;
+  min-width: 300px;
+}
+
+.hero-image img {
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
 /* DASHBOARD */
 .dashboard {
-  padding: 30px 8%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  padding: 30px 8%;
 }
 
 .box {
   background: white;
   padding: 30px;
-  border-radius: 18px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .box h3 {
-  color: #b30000;
-  font-size: 34px;
+  font-size: 30px;
+  color: #8B0000;
+  margin-bottom: 10px;
 }
 
-.box p {
-  margin-top: 10px;
-  color: #666;
-}
-
-/* CONTENT BOX */
+/* SIMPLE BOX */
 .simple-box {
-  width: 85%;
-  margin: 30px auto;
   background: white;
+  width: 90%;
+  max-width: 900px;
+  margin: 30px auto;
   padding: 35px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .simple-box h2 {
-  color: #b30000;
+  color: #8B0000;
   margin-bottom: 20px;
 }
 
 .simple-box p {
   line-height: 1.8;
-  color: #555;
   margin-bottom: 15px;
 }
 
@@ -164,48 +175,31 @@ body {
   line-height: 2;
 }
 
-/* FORM */
-input,
-select {
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
-
-button {
-  width: 100%;
-  background: #b30000;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
 /* FOOTER */
-.footer {
-  background: #111;
+footer {
+  background: #8B0000;
   color: white;
   text-align: center;
   padding: 25px;
   margin-top: 40px;
 }
 
-/* MOBILE */
-@media(max-width:768px) {
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
   .navbar {
-    flex-direction: column;
+    padding: 20px;
     text-align: center;
+    justify-content: center;
     gap: 15px;
   }
 
   .hero {
+    padding: 40px 20px;
     text-align: center;
   }
 
-  .hero-left h1 {
+  .hero-content h1 {
     font-size: 38px;
   }
 
@@ -213,7 +207,7 @@ button {
     justify-content: center;
   }
 
-  .simple-box {
-    width: 92%;
+  .menu {
+    justify-content: center;
   }
 }
