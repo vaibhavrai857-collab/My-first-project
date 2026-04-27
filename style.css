@@ -50,7 +50,7 @@ body.home {
   color: #ffd700;
 }
 
-/* HERO SECTION */
+/* HERO */
 .hero {
   text-align: center;
   padding: 80px 20px;
@@ -59,7 +59,6 @@ body.home {
 .hero h4 {
   color: #8B0000;
   margin-bottom: 10px;
-  font-size: 18px;
 }
 
 .hero h1 {
@@ -80,7 +79,7 @@ body.home {
   margin-bottom: 30px;
 }
 
-/* HERO BUTTONS */
+/* BUTTONS */
 .hero-buttons {
   display: flex;
   justify-content: center;
@@ -156,6 +155,17 @@ button:hover {
   line-height: 2;
 }
 
+/* FORM */
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
 /* FOOTER */
 footer {
   background: #8B0000;
@@ -173,10 +183,6 @@ footer {
     text-align: center;
     justify-content: center;
     gap: 15px;
-  }
-
-  .hero {
-    padding: 50px 20px;
   }
 
   .hero h1 {
