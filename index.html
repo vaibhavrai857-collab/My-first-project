@@ -1,171 +1,191 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blood Bank Management System</title>
-  <link rel="stylesheet" href="style.css">
+<title>Blood Bank</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="home">
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- NAVBAR -->
 <div class="navbar">
-  <h2>🩸 Blood Bank</h2>
+<h2>🩸 Blood Bank</h2>
 
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="register.html">Register Donor</a>
-    <a href="request.html">Request Blood</a>
-    <a href="search.html">Search Donor</a>
-    <a href="login.html">Admin</a>
-  </div>
+<div class="menu">
+<a href="index.html">Home</a>
+<a href="register.html">Register Donor</a>
+<a href="request.html">Request Blood</a>
+<a href="search.html">Search Donor</a>
+<a href="login.html">Admin</a>
+</div>
 </div>
 
+<!-- HERO SECTION -->
+<div class="hero">
+<h1>Blood Bank Management System</h1>
+<p>Donate Blood, Save Lives ❤️</p>
+</div>
 
-<!-- =========================
-     HERO SECTION
-========================= -->
-<section class="hero">
+<!-- DASHBOARD -->
+<div class="dashboard">
 
-  <div class="hero-content">
+<div class="box">
+<h3 id="donorCount">0</h3>
+<p>Registered Donors</p>
+</div>
 
-    <h4>Blood Bank Management System</h4>
+<div class="box">
+<h3 id="requestCount">0</h3>
+<p>Blood Requests</p>
+</div>
 
-    <h1>
-      Save Lives,<br>
-      <span>Donate Blood ❤️</span>
-    </h1>
+<div class="box">
+<h3>24/7</h3>
+<p>Emergency Support</p>
+</div>
 
-    <p>
-      One donation can save multiple lives.
-      Join our mission to create a faster,
-      safer, and smarter blood donation network.
-    </p>
+<div class="box">
+<h3>100%</h3>
+<p>Secure & Verified</p>
+</div>
 
-    <div class="hero-buttons">
-      <a href="register.html">
-        <button>Register as Donor</button>
-      </a>
+</div>
 
-      <a href="request.html">
-        <button>Request Blood</button>
-      </a>
+<!-- WHY CHOOSE US -->
+<div class="simple-box">
+<h2>Why Choose Us?</h2>
 
-      <a href="search.html">
-        <button>Search Donor</button>
-      </a>
-    </div>
+<p>
+We provide fast blood donor search,
+emergency request handling,
+hospital partnerships,
+and secure donor management
+to save lives faster.
+</p>
 
-  </div>
+<ul style="line-height: 1.8;">
+<li>✔ Verified Blood Donors</li>
+<li>✔ Emergency Blood Request System</li>
+<li>✔ Smart Donor Search by City & Group</li>
+<li>✔ Hospital Partnership Program</li>
+<li>✔ Admin Dashboard Management</li>
+</ul>
+</div>
 
-  <div class="hero-image">
-    <img
-      src="https://images.unsplash.com/photo-1615461066841-6116e61058f4"
-      alt="Blood Donation"
-    >
-  </div>
+<!-- ABOUT US -->
+<div class="simple-box">
+<h2>About Us</h2>
 
-</section>
+<p>
+Our Blood Bank Management System connects
+blood donors with patients and hospitals
+during critical emergencies.
+</p>
 
+<p>
+We aim to reduce delays in finding blood
+and provide a trusted digital platform
+for faster healthcare support.
+</p>
+</div>
 
-<!-- =========================
-     LIVE DASHBOARD
-========================= -->
-<section class="dashboard">
-
-  <div class="box">
-    <h3 id="donorCount">0</h3>
-    <p>Registered Donors</p>
-  </div>
-
-  <div class="box">
-    <h3 id="requestCount">0</h3>
-    <p>Blood Requests</p>
-  </div>
-
-  <div class="box">
-    <h3>24/7</h3>
-    <p>Emergency Support</p>
-  </div>
-
-  <div class="box">
-    <h3>100%</h3>
-    <p>Secure & Verified</p>
-  </div>
-
-</section>
-
-
-<!-- =========================
-     WHY CHOOSE US
-========================= -->
+<!-- HOSPITAL PARTNERSHIP -->
 <div class="simple-box">
 
-  <h2>Why Choose Us?</h2>
+<h2>Strategic Hospital Partnership 🏥</h2>
 
-  <ul>
-    <li>✔ Verified Blood Donors</li>
-    <li>✔ Emergency Blood Request System</li>
-    <li>✔ Smart Donor Search by City & Group</li>
-    <li>✔ Hospital Partnership Program</li>
-    <li>✔ Admin Dashboard Management</li>
-  </ul>
+<p>
+Only authorized hospital representatives such as
+Administrators, Medical Officers, Blood Bank Managers,
+or Hospital Management Staff can apply for partnership.
+</p>
+
+<h3>Authorized Partnership Request</h3>
+
+<form id="hospitalForm">
+
+<input
+id="hospitalName"
+placeholder="Hospital / Blood Bank Name"
+required
+>
+
+<input
+id="contactPerson"
+placeholder="Authorized Person Name"
+required
+>
+
+<select id="designation" required>
+<option value="">Select Designation</option>
+<option>Hospital Administrator</option>
+<option>Medical Officer</option>
+<option>Blood Bank Manager</option>
+<option>Emergency Coordinator</option>
+<option>Hospital Director</option>
+<option>Other Authorized Staff</option>
+</select>
+
+<input
+id="hospitalPhone"
+placeholder="Official Contact Number"
+required
+>
+
+<input
+id="hospitalEmail"
+type="email"
+placeholder="Official Hospital Email"
+required
+>
+
+<input
+id="hospitalCity"
+placeholder="City / Service Area"
+required
+>
+
+<input
+id="authorizationCode"
+placeholder="Hospital Authorization Code"
+required
+>
+
+<button type="submit">
+Apply for Authorized Partnership
+</button>
+
+</form>
 
 </div>
 
-
-<!-- =========================
-     ABOUT US
-========================= -->
+<!-- EMERGENCY SUPPORT -->
 <div class="simple-box">
 
-  <h2>About Us</h2>
+<h2>Emergency Support 🚑</h2>
 
-  <p>
-    Our Blood Bank Management System connects
-    blood donors with patients and hospitals
-    during critical emergencies.
-  </p>
+<p>
+For urgent blood requirements,
+contact our emergency support team.
+</p>
 
-  <p>
-    We aim to reduce delays in finding blood
-    and provide a trusted digital platform
-    for faster healthcare support.
-  </p>
+<h3>📞 +91 98765 43210</h3>
+<p>Available 24/7 for emergency cases</p>
 
 </div>
 
-
-<!-- =========================
-     EMERGENCY SUPPORT
-========================= -->
-<div class="simple-box">
-
-  <h2>Emergency Support 🚑</h2>
-
-  <p>
-    For urgent blood requirements,
-    contact our emergency support team.
-  </p>
-
-  <h3>📞 +91 98765 43210</h3>
-  <p>Available 24/7 for emergency cases</p>
-
-</div>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-<footer>
-  <p>
-    © 2026 Blood Bank Management System |
-    Save Lives Through Blood Donation ❤️
-  </p>
+<!-- FOOTER -->
+<footer style="
+text-align:center;
+padding:20px;
+color:white;
+margin-top:30px;
+">
+<p>
+© 2026 Blood Bank Management System |
+Save Lives Through Blood Donation ❤️
+</p>
 </footer>
 
 <script src="script.js"></script>
