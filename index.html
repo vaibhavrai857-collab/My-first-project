@@ -1,3 +1,5 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +10,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
+    <!-- IMPORTANT: Only homepage uses home.css -->
+    <link rel="stylesheet" href="home.css">
 </head>
 <body>
 
@@ -28,25 +30,11 @@
     </div>
 
     <nav class="menu">
-        <a href="index.html" class="active">
-            <i class="fa-solid fa-house"></i> Home
-        </a>
-
-        <a href="register.html">
-            <i class="fa-solid fa-user-plus"></i> Register Donor
-        </a>
-
-        <a href="request.html">
-            <i class="fa-solid fa-droplet"></i> Request Blood
-        </a>
-
-        <a href="search.html">
-            <i class="fa-solid fa-magnifying-glass"></i> Search Donor
-        </a>
-
-        <a href="login.html">
-            <i class="fa-solid fa-shield-halved"></i> Admin
-        </a>
+        <a href="index.html" class="active">Home</a>
+        <a href="register.html">Register Donor</a>
+        <a href="request.html">Request Blood</a>
+        <a href="search.html">Search Donor</a>
+        <a href="login.html">Admin</a>
     </nav>
 
 </header>
@@ -66,8 +54,8 @@
         </h1>
 
         <p>
-            One donation can save multiple lives.<br>
-            Join our mission to create a faster,<br>
+            One donation can save multiple lives.
+            Join our mission to create a faster,
             safer, and smarter blood donation network.
         </p>
 
@@ -75,21 +63,18 @@
 
             <a href="register.html">
                 <button class="btn primary">
-                    <i class="fa-solid fa-user"></i>
                     Register as Donor
                 </button>
             </a>
 
             <a href="request.html">
                 <button class="btn">
-                    <i class="fa-solid fa-droplet"></i>
                     Request Blood
                 </button>
             </a>
 
             <a href="search.html">
                 <button class="btn">
-                    <i class="fa-solid fa-magnifying-glass"></i>
                     Search Donor
                 </button>
             </a>
@@ -99,8 +84,10 @@
     </div>
 
     <div class="hero-right">
-        <img src="https://images.unsplash.com/photo-1615461066841-6116e61058f4"
-             alt="Blood Donation">
+        <img
+            src="https://images.unsplash.com/photo-1615461066841-6116e61058f4"
+            alt="Blood Donation"
+        >
     </div>
 
 </section>
@@ -133,7 +120,7 @@
 </section>
 
 <!-- =========================
-     MAIN CONTENT SECTION
+     MAIN GRID
 ========================= -->
 <section class="main-grid">
 
@@ -144,13 +131,13 @@
         <ul>
             <li>Verified Blood Donors</li>
             <li>Emergency Blood Request System</li>
-            <li>Smart Donor Search by City & Group</li>
+            <li>Smart Donor Search</li>
             <li>Hospital Partnership Program</li>
             <li>Admin Dashboard Management</li>
         </ul>
     </div>
 
-    <!-- About -->
+    <!-- About Us -->
     <div class="box">
         <h2>About Us</h2>
 
@@ -162,21 +149,20 @@
 
         <p>
             We aim to reduce delays in finding blood
-            and provide a trusted digital platform
-            for faster healthcare support.
+            and provide trusted healthcare support.
         </p>
     </div>
 
     <!-- Hospital Partnership -->
     <div class="box">
-        <h2>Strategic Hospital Partnership</h2>
+        <h2>Hospital Partnership</h2>
 
         <form id="hospitalForm">
 
             <input
                 type="text"
                 id="hospitalName"
-                placeholder="Hospital / Blood Bank Name"
+                placeholder="Hospital Name"
                 required
             >
 
@@ -209,7 +195,7 @@
         </form>
     </div>
 
-    <!-- Emergency -->
+    <!-- Emergency Support -->
     <div class="box">
         <h2>Emergency Support</h2>
 
@@ -235,7 +221,6 @@
     Save Lives Through Blood Donation ❤️
 </footer>
 
-<!-- JS -->
 <script src="script.js"></script>
 
 </body>
